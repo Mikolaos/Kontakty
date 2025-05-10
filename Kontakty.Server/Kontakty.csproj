@@ -1,0 +1,78 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <NoWarn>$(NoWarn);1591</NoWarn>
+        <DocumentationFile>C:\Users\mikol\RiderProjects\Kontakty — kopia\Doc.xml</DocumentationFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.0" />
+      <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.0" />
+      <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="8.0.0" />
+      <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.0" />
+      <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="8.0.0" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.0" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.0">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="8.0.0" />
+      <PackageReference Include="Swashbuckle.AspNetCore" Version="8.1.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Kontakty.Client\Layout\MainLayout.razor" />
+      <_ContentIncludedByDefault Remove="Kontakty.Client\Layout\NavMenu.razor" />
+      <_ContentIncludedByDefault Remove="Kontakty.Client\obj\Kontakty.Client.csproj.nuget.dgspec.json" />
+      <_ContentIncludedByDefault Remove="Kontakty.Client\obj\project.assets.json" />
+      <_ContentIncludedByDefault Remove="Kontakty.Client\Properties\launchSettings.json" />
+      <_ContentIncludedByDefault Remove="Kontakty.Client\wwwroot\sample-data\weather.json" />
+      <_ContentIncludedByDefault Remove="Views\Components\App.razor" />
+      <_ContentIncludedByDefault Remove="Views\Components\Layout\MainLayout.razor" />
+      <_ContentIncludedByDefault Remove="Views\Components\Layout\NavMenu.razor" />
+      <_ContentIncludedByDefault Remove="Views\Components\Pages\Counter.razor" />
+      <_ContentIncludedByDefault Remove="Views\Components\Pages\Error.razor" />
+      <_ContentIncludedByDefault Remove="Views\Components\Pages\Home.razor" />
+      <_ContentIncludedByDefault Remove="Views\Components\Pages\Weather.razor" />
+      <_ContentIncludedByDefault Remove="Views\Components\Routes.razor" />
+      <_ContentIncludedByDefault Remove="Views\Components\_Imports.razor" />
+      <_ContentIncludedByDefault Remove="Views\Pages\Contact\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Pages\Contact\Privacy.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Shared\Error.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Shared\_Layout.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Shared\_ValidationScriptsPartial.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\_ViewImports.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\_ViewStart.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Layout\MainLayout.razor" />
+      <_ContentIncludedByDefault Remove="Views\Layout\NavMenu.razor" />
+      <_ContentIncludedByDefault Remove="Views\Pages\Contact\ContactCreate.razor" />
+      <_ContentIncludedByDefault Remove="Views\Pages\Contact\ContactDetail.razor" />
+      <_ContentIncludedByDefault Remove="Views\Pages\Contact\ContactEdit.razor" />
+      <_ContentIncludedByDefault Remove="Views\Pages\Contact\ContactForm.razor" />
+      <_ContentIncludedByDefault Remove="Views\Pages\Contact\ContactList.razor" />
+      <_ContentIncludedByDefault Remove="Views\Pages\Counter.razor" />
+      <_ContentIncludedByDefault Remove="Views\Pages\Home.razor" />
+      <_ContentIncludedByDefault Remove="Views\Pages\Weather.razor" />
+      <_ContentIncludedByDefault Remove="Components\App.razor" />
+      <_ContentIncludedByDefault Remove="Components\Layout\MainLayout.razor" />
+      <_ContentIncludedByDefault Remove="Components\Layout\NavMenu.razor" />
+      <_ContentIncludedByDefault Remove="Components\Pages\Counter.razor" />
+      <_ContentIncludedByDefault Remove="Components\Pages\Error.razor" />
+      <_ContentIncludedByDefault Remove="Components\Pages\Home.razor" />
+      <_ContentIncludedByDefault Remove="Components\Pages\Weather.razor" />
+      <_ContentIncludedByDefault Remove="Components\Routes.razor" />
+      <_ContentIncludedByDefault Remove="Components\_Imports.razor" />
+      <_ContentIncludedByDefault Remove="Shared\MainLayout.razor" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <UpToDateCheckInput Remove="Shared\MainLayout.razor" />
+    </ItemGroup>
+
+</Project>
