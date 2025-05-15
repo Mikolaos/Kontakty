@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System.Text.Json;
 
 // Add required services and dependencies
 var builder = WebApplication.CreateBuilder(args);
@@ -23,7 +24,7 @@ builder.Services.AddSwaggerGen(option =>
 {
     // Basic Swagger documentation setup
     option.SwaggerDoc("v1", new OpenApiInfo { Title = "Demo API", Version = "v1" });
-    
+
     // Configure JWT authentication scheme for Swagger
     option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
@@ -34,7 +35,7 @@ builder.Services.AddSwaggerGen(option =>
         BearerFormat = "JWT",
         Scheme = "Bearer"
     });
-    
+
     // Add JWT security requirement to Swagger
     option.AddSecurityRequirement(new OpenApiSecurityRequirement
     {
@@ -57,6 +58,12 @@ builder.Services.AddDbContext<ApplicationDBContext>(options =>
 {
     options.UseInMemoryDatabase("Kontakty");
 });
+
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+    });
 
 // Configure Identity with password requirements
 builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
@@ -129,12 +136,13 @@ using (var scope = app.Services.CreateScope())
     }
 
     // Create default categories
-    var sluzbowy = new Category { Name = "Służbowy" };
-    var prywatny = new Category { Name = "Prywatny" };
-    var inny = new Category { Name = "Inny" };
+
 
     if (!db.Categories.Any())
     {
+        var sluzbowy = new Category { Name = "Służbowy" };
+        var prywatny = new Category { Name = "Prywatny" };
+        var inny = new Category { Name = "Inny" };
         // Add categories and save to generate IDs
         db.Categories.AddRange(sluzbowy, prywatny, inny);
         await db.SaveChangesAsync();
@@ -146,44 +154,44 @@ using (var scope = app.Services.CreateScope())
         );
 
         await db.SaveChangesAsync();
+
+        // Add sample contacts
+        db.Contacts.AddRange(
+            // Business contact example
+            new ContactModel
+            {
+                Name = "Jan",
+                LastName = "Kowalski",
+                Email = "jan.kowalski@example.com",
+                Password = "haslo123!A",
+                CategoryId = sluzbowy.Id,
+                CategoryName = sluzbowy.Name,
+                Category = sluzbowy,
+                SubCategoryId = 2,
+                SubCategory = db.SubCategories.FirstOrDefault(sc => sc.Id == 2),
+                SubCategoryName = db.SubCategories.FirstOrDefault(sc => sc.Id == 2)?.Name,
+                PhoneNumber = "123-456-789",
+                DateOfBirth = new DateOnly(1990, 5, 1)
+            },
+            // Private contact example
+            new ContactModel
+            {
+                Name = "Anna",
+                LastName = "Nowak",
+                Email = "anna.nowak@example.com",
+                Password = "tajnehaslo2@C",
+                CategoryId = prywatny.Id,
+                CategoryName = prywatny.Name,
+                Category = prywatny,
+                CustomSubCategory = "Znajomi",
+                PhoneNumber = "987-654-321",
+                DateOfBirth = new DateOnly(1985, 3, 15)
+            }
+        );
+
+        db.SaveChanges();
+        db.Database.EnsureCreated();
     }
-
-    // Add sample contacts
-    db.Contacts.AddRange(
-        // Business contact example
-        new ContactModel
-        {
-            Name = "Jan",
-            LastName = "Kowalski",
-            Email = "jan.kowalski@example.com",
-            Password = "haslo123",
-            CategoryId = sluzbowy.Id,
-            CategoryName = sluzbowy.Name,
-            Category = sluzbowy,
-            SubCategoryId = 2,
-            SubCategory = db.SubCategories.FirstOrDefault(sc => sc.Id == 2),
-            SubCategoryName = db.SubCategories.FirstOrDefault(sc => sc.Id == 2)?.Name,
-            PhoneNumber = "123-456-789",
-            DateOfBirth = new DateOnly(1990, 5, 1)
-        },
-        // Private contact example
-        new ContactModel
-        {
-            Name = "Anna",
-            LastName = "Nowak",
-            Email = "anna.nowak@example.com",
-            Password = "tajnehaslo",
-            CategoryId = prywatny.Id,
-            CategoryName = prywatny.Name,
-            Category = prywatny,
-            CustomSubCategory = "Znajomi",
-            PhoneNumber = "987-654-321",
-            DateOfBirth = new DateOnly(1985, 3, 15)
-        }
-    );
-
-    db.SaveChanges();
-    db.Database.EnsureCreated();
 }
 
 // Configure middleware pipeline

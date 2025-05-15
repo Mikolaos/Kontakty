@@ -17,10 +17,10 @@ public class ContactDetailDto
     public string Password { get; set; }
 
     [Required]
-    public int CategoryId { get; set; } 
-    public string CategoryName { get; set; }
-    public int? SubCategoryId { get; set; } 
-    public string SubCategoryName { get; set; }
+    public int CategoryId { get; set; }
+    public string? CategoryName { get; set; }
+    public int? SubCategoryId { get; set; }
+    public string? SubCategoryName { get; set; }
     public string? CustomSubCategory { get; set; }
 
     [Phone]
