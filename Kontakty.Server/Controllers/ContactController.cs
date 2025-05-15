@@ -99,7 +99,7 @@ public class ContactController : ControllerBase
 
         if (await _contactRepository.ExistsByEmail(contactCreateAndUpdateDto.Email))
         {
-            return Conflict(new { message = "Użytkownik z takim adresem email już istnieje." });
+            return Conflict(new { message = "There already exists a contact with the same email address." });
         }
 
         var kontaktModel = contactCreateAndUpdateDto.ToContactFromCreateDto();
@@ -127,6 +127,10 @@ public class ContactController : ControllerBase
         if (kontaktModel == null)
         {
             return NotFound();
+        }
+        if (await _contactRepository.ExistsByEmail(contactCreateAndUpdateDto.Email))
+        {
+            return Conflict(new { message = "There already exists a contact with the same email address." });
         }
         return Ok(kontaktModel.ToContactDetailDto());
     }

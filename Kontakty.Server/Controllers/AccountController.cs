@@ -91,6 +91,13 @@ public class AccountController : ControllerBase
                 return BadRequest(ModelState);
 
             // Create new user object with provided details
+            var existingUser = await _userManager.FindByEmailAsync(registerDto.Email);
+            
+            if (existingUser != null)
+            {
+                return BadRequest(new { message = "Użytkownik z tym adresem email już istnieje." });
+            }
+
             var appUser = new AppUser
             {
                 UserName = registerDto.Username,
