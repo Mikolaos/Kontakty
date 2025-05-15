@@ -140,17 +140,17 @@ using (var scope = app.Services.CreateScope())
 
     if (!db.Categories.Any())
     {
-        var sluzbowy = new Category { Name = "Służbowy" };
-        var prywatny = new Category { Name = "Prywatny" };
-        var inny = new Category { Name = "Inny" };
+        var business = new Category { Name = "Business" };
+        var personal = new Category { Name = "Personal" };
+        var other = new Category { Name = "Other" };
         // Add categories and save to generate IDs
-        db.Categories.AddRange(sluzbowy, prywatny, inny);
+        db.Categories.AddRange(business, personal, other);
         await db.SaveChangesAsync();
 
         // Add subcategories for business contacts
         db.SubCategories.AddRange(
-            new SubCategory { Name = "Szef", CategoryId = sluzbowy.Id },
-            new SubCategory { Name = "Klient", CategoryId = sluzbowy.Id }
+            new SubCategory { Name = "Boss", CategoryId = business.Id },
+            new SubCategory { Name = "Client", CategoryId = business.Id }
         );
 
         await db.SaveChangesAsync();
@@ -164,9 +164,9 @@ using (var scope = app.Services.CreateScope())
                 LastName = "Kowalski",
                 Email = "jan.kowalski@example.com",
                 Password = "haslo123!A",
-                CategoryId = sluzbowy.Id,
-                CategoryName = sluzbowy.Name,
-                Category = sluzbowy,
+                CategoryId = business.Id,
+                CategoryName = business.Name,
+                Category = business,
                 SubCategoryId = 2,
                 SubCategory = db.SubCategories.FirstOrDefault(sc => sc.Id == 2),
                 SubCategoryName = db.SubCategories.FirstOrDefault(sc => sc.Id == 2)?.Name,
@@ -180,9 +180,9 @@ using (var scope = app.Services.CreateScope())
                 LastName = "Nowak",
                 Email = "anna.nowak@example.com",
                 Password = "tajnehaslo2@C",
-                CategoryId = prywatny.Id,
-                CategoryName = prywatny.Name,
-                Category = prywatny,
+                CategoryId = personal.Id,
+                CategoryName = personal.Name,
+                Category = personal,
                 CustomSubCategory = "Znajomi",
                 PhoneNumber = "987-654-321",
                 DateOfBirth = new DateOnly(1985, 3, 15)

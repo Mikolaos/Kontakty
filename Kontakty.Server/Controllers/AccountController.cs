@@ -95,7 +95,7 @@ public class AccountController : ControllerBase
             
             if (existingUser != null)
             {
-                return BadRequest(new { message = "Użytkownik z tym adresem email już istnieje." });
+                return BadRequest(new { message = "There already exists a user with the same email address." });
             }
 
             var appUser = new AppUser

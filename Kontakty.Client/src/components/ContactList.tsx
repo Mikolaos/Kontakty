@@ -36,7 +36,7 @@ export default function ContactList({ onSelect, onEdit, onDelete }: Props) {
             <strong>{c.name} {c.lastName}</strong><br />
             📧 {c.email}<br />
             📞 {c.phoneNumber}<br />
-            {/* Wyświetl przyciski tylko jeśli użytkownik jest zalogowany */}
+            {/* Show buttons only for logged in user */}
             {token && (
               <div style={{ marginTop: '0.5rem' }}>
                 <button
@@ -51,7 +51,7 @@ export default function ContactList({ onSelect, onEdit, onDelete }: Props) {
                     marginRight: '5px',
                   }}
                 >
-                  Szczegóły
+                  Info
                 </button>
                 <button
                   onClick={() => onEdit(c.id)}
@@ -65,7 +65,7 @@ export default function ContactList({ onSelect, onEdit, onDelete }: Props) {
                     marginRight: '5px',
                   }}
                 >
-                  Edytuj
+                  Edit
                 </button>
                 <button
                   onClick={() => onDelete(c.id)}
@@ -78,7 +78,7 @@ export default function ContactList({ onSelect, onEdit, onDelete }: Props) {
                     cursor: 'pointer',
                   }}
                 >
-                  Usuń
+                  Delete
                 </button>
               </div>
             )}
