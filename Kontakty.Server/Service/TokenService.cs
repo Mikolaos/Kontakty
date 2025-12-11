@@ -8,25 +8,13 @@ using JwtRegisteredClaimNames = Microsoft.IdentityModel.JsonWebTokens.JwtRegiste
 
 namespace Kontakty.Service;
 
-/// <summary>
-/// Service responsible for generating JSON Web Tokens (JWT) for user authentication.
-/// </summary>
+
 public class TokenService : ITokenService
 {
-    /// <summary>
-    /// Represents the configuration settings used within the application.
-    /// </summary>
-    /// <remarks>
-    /// This variable is used to retrieve application-specific configuration data,
-    /// such as values related to JWT authentication, including keys, issuers, and audiences.
-    /// It provides a mechanism to access configuration values from various sources supported by the IConfiguration interface.
-    /// </remarks>
+
     private readonly IConfiguration _configuration;
 
-    /// <summary>
-    /// Represents the symmetric security key used for signing JSON Web Tokens (JWT).
-    /// The key is derived from a configuration setting and is used to ensure the integrity and authenticity of tokens.
-    /// </summary>
+
     private readonly SymmetricSecurityKey _key;
 
     /// Provides functionality for creating JWT tokens.
@@ -36,11 +24,6 @@ public class TokenService : ITokenService
         _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
     }
 
-    /// <summary>
-    /// Generates a JSON Web Token (JWT) for the specified user.
-    /// </summary>
-    /// <param name="appUser">The user for whom the token is being created.</param>
-    /// <returns>A JWT string representing the user's authentication token.</returns>
     public string CreateToken(AppUser appUser)
     {
         var claims = new List<Claim>

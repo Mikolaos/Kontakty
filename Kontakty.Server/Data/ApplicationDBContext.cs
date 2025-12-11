@@ -6,39 +6,17 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Kontakty.Data;
 
-/// <summary>
-/// Database context class that inherits from IdentityDbContext to handle both
-/// application data and identity management
-/// </summary>
 public class ApplicationDBContext : IdentityDbContext<AppUser>
 {
-     /// <summary>
-     /// Constructor that accepts database configuration options
-     /// </summary>
-     /// <param name="dbContextOptions">Database configuration options</param>
      public ApplicationDBContext(DbContextOptions dbContextOptions) : base(dbContextOptions)
      {
      }
 
-     /// <summary>
-     /// DbSet for managing contact records
-     /// </summary>
      public DbSet<ContactModel> Contacts { get; set; }
 
-     /// <summary>
-     /// DbSet for managing contact categories
-     /// </summary>
      public DbSet<Category> Categories { get; set; }
 
-     /// <summary>
-     /// DbSet for managing contact subcategories
-     /// </summary>
      public DbSet<SubCategory> SubCategories { get; set; }
-
-     /// <summary>
-     /// Configures the database model and relationships
-     /// </summary>
-     /// <param name="modelBuilder">Model builder instance for configuring the database</param>
      protected override void OnModelCreating(ModelBuilder modelBuilder)
      {
           // Call base configuration for identity tables
@@ -58,7 +36,7 @@ public class ApplicationDBContext : IdentityDbContext<AppUser>
                     NormalizedName = "USER"
                }
           };
-          
+
           // Seed the default roles
           modelBuilder.Entity<IdentityRole>().HasData(roles);
 

@@ -4,16 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Kontakty.Mappings;
 
-/// <summary>
-/// Provides extension methods for mapping between various data transfer objects (DTOs) and the ContactModel.
-/// </summary>
 public static class MappingContact
 {
-    /// <summary>
-    /// Maps a ContactCreateAndUpdateDto instance to a ContactModel instance.
-    /// </summary>
-    /// <param name="contactCreateAndUpdateDto">The DTO object containing data for creating or updating a contact.</param>
-    /// <returns>A ContactModel object populated with the data from the provided DTO.</returns>
+
     public static ContactModel ToContactFromCreateDto(this ContactCreateAndUpdateDto contactCreateAndUpdateDto)
     {
         return new ContactModel
@@ -31,11 +24,6 @@ public static class MappingContact
         };
     }
 
-    /// <summary>
-    /// Maps a <see cref="ContactModel"/> instance to a <see cref="ContactDetailDto"/> instance.
-    /// </summary>
-    /// <param name="contactModel">The <see cref="ContactModel"/> object containing contact details to map.</param>
-    /// <returns>A <see cref="ContactDetailDto"/> object with mapped values from the <paramref name="contactModel"/>.</returns>
     public static ContactDetailDto ToContactDetailDto(this ContactModel contactModel)
     {
         return new ContactDetailDto
@@ -54,11 +42,6 @@ public static class MappingContact
         };
     }
 
-    /// <summary>
-    /// Maps a <see cref="ContactModel"/> instance to a <see cref="ContactListDto"/> instance.
-    /// </summary>
-    /// <param name="contactModel">The <see cref="ContactModel"/> instance to be mapped.</param>
-    /// <returns>A <see cref="ContactListDto"/> instance containing basic information about the contact.</returns>
     public static ContactListDto ToContactListDto(this ContactModel contactModel)
     {
         return new ContactListDto
